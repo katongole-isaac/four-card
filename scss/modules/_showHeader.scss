@@ -1,0 +1,44 @@
+@mixin flexProps($flexDir: column, $gap: 0) {
+  gap: $gap;
+  flex-direction: $flexDir;
+  width: 100%;
+  display: flex;
+}
+
+.show-header {
+  // border: 2px solid red;
+  @include flexProps($gap: 10px);
+  justify-content: center;
+  margin: 4em 0;
+  & div:first-child {
+    @include flexProps();
+    text-align: center;
+    span {
+      font-size: 2.2rem;
+      font-weight: 200;
+      color: $GrayishBlue;
+
+      &:last-child {
+        font-weight: 600;
+        color: $VeryDarkBlue;
+      }
+    }
+  }
+
+  & div:nth-of-type(2) {
+    color: $GrayishBlue;
+    text-align: center;
+    width: 50%;
+    margin: auto;
+    p {
+      font-weight: 400;
+    }
+  }
+
+  @include xs() {
+    & div:nth-of-type(2) {
+      width: 100%;
+      // padding: 0 10px;
+    }
+  }
+}

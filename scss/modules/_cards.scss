@@ -1,0 +1,44 @@
+$borderColors: (
+  "orange": $Orange,
+  "blue": $Blue,
+  "cyan": $Cyan,
+  "red": $Red,
+);
+
+.card {
+  padding: 2rem;
+  margin-bottom: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+    rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  border-radius: 10px;
+  @include flexProps($gap: 1em);
+  max-width: 26rem;
+  min-height: 280px;
+  position: relative;
+
+  &-image-wrapper {
+    width: 60px;
+    height: 60px;
+    align-self: flex-end;
+    position: relative;
+    bottom: -40px;
+  }
+
+  &-header {
+    @include flexProps($gap: 0.3em);
+    h3 {
+      color: $VeryDarkBlue;
+      font-weight: 600;
+    }
+    p {
+      color: $GrayishBlue;
+    }
+  }
+}
+
+@each $key, $val in $borderColors {
+  .card-#{$key} {
+    @extend .card;
+    border-top: 4px solid $val;
+  }
+}

@@ -1,0 +1,72 @@
+@mixin gridDefintion($col: 1fr, $row: 1fr) {
+  grid-template-columns: $col;
+  grid-template-rows: $row;
+}
+
+@mixin rowsAndCol($colStart: 1, $rowStart: 1) {
+  grid-column: $colStart;
+  grid-row: $rowStart;
+}
+
+.grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-template-rows: repeat(2, 1fr);
+  //   border: 2px solid purple;
+  gap: 1.5em;
+
+  .card-orange {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .card-red {
+    grid-column: 2;
+  }
+  .card-cyan,
+  .card-blue {
+    grid-row: 1 / 3;
+    align-self: center;
+  }
+
+  @include xs {
+    @include gridDefintion;
+
+    .card {
+      margin: auto;
+    }
+    .card-orange {
+      @include rowsAndCol($rowStart: 3);
+    }
+    .card-red {
+      @include rowsAndCol($rowStart: 2);
+    }
+    .card-blue {
+      @include rowsAndCol($rowStart: 4);
+    }
+    .card-cyan {
+      @include rowsAndCol;
+    }
+  }
+
+  @include sm {
+    @include gridDefintion($col: repeat(2, 1fr), $row: 1fr);
+
+    .card-orange {
+      @include rowsAndCol($rowStart: 1);
+    }
+    .card-red {
+      @include rowsAndCol($colStart: 2, $rowStart: 1);
+    }
+    .card-blue {
+      @include rowsAndCol($colStart: 2, $rowStart: 2);
+    }
+    .card-cyan {
+      @include rowsAndCol($colStart: 1, $rowStart: 2);
+    }
+  }
+
+  @include md {
+    
+  }
+}
